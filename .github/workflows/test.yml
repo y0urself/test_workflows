@@ -10,7 +10,5 @@ jobs:
     steps:
       - name: CHeckout
         uses: actions/checkout@v2
-      - name: install jq
-        run: sudo apt install jq
-      - name: print github.event
-        run: jq <<< ${{ github.event }}
+      - name: Debug action
+        uses: hmarr/debug-action@v2.0.0
