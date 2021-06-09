@@ -8,5 +8,9 @@ jobs:
   test_env:
     runs-on: 'ubuntu-latest'
     steps:
-      - name: actions/checkout@v2
-        run: echo ${{ github.event }}
+      - name: CHeckout
+        uses: actions/checkout@v2
+      - name: install jq
+        run: sudo apt install jq
+      - name: print github.event
+        run: jq <<< ${{ github.event }}
