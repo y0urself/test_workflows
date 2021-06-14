@@ -22,3 +22,4 @@ jobs:
               body: '@dependabot rebase'
             })
       # some comment
+      # other comment
