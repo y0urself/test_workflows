@@ -1,0 +1,13 @@
+name: Test GPG
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  rebase:
+    name: Rebase Dependabot
+    runs-on: 'ubuntu-latest'
+    steps:
+      - name: Use AGENT
+        run: gpg -h
