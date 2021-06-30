@@ -11,5 +11,11 @@ jobs:
     steps:
       - name: Use AGENT
         run: gpg -h
-      - name: Bla
-        run: echo "Build and push ${{ github.repository }}-$GITHUB_BASE_REF-${{ matrix.platform}}-${{matrix.compiler}}-${{matrix.purpose}}"
+      - name: Find reference branch
+        run: |
+          if [ -n "$GITHUB_BASE_REF" ];                          \
+          then echo "BRANCH=$GITHUB_BASE_REF" >> $GITHUB_ENV;  \
+          else echo "BRANCH=$GITHUB_REF" >> $GITHUB_ENV;       \
+          fi
+      - name: print branch
+        run: echo $BRANCH
