@@ -14,8 +14,8 @@ jobs:
       - name: Find reference branch
         run: |
           if [ -n "$GITHUB_BASE_REF" ];                          \
-          then echo "BRANCH=$GITHUB_BASE_REF" >> $GITHUB_ENV;  \
-          else echo "BRANCH=$GITHUB_REF" >> $GITHUB_ENV;       \
+          then echo "BRANCH=${GITHUB_BASE_REF##*/}" >> $GITHUB_ENV;  \
+          else echo "BRANCH=${GITHUB_REF##*/}" >> $GITHUB_ENV;       \
           fi
       - name: print branch
         run: echo $BRANCH
