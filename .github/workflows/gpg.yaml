@@ -12,4 +12,4 @@ jobs:
       - name: Use AGENT
         run: gpg -h
       - name: Bla
-        run: echo "Build and push ${{ github.repository }}-${{ GITHUB_BASE_REF }}-${{ matrix.platform}}-${{matrix.compiler}}-${{matrix.purpose}}"
+        run: echo "Build and push ${{ github.repository }}-$GITHUB_BASE_REF-${{ matrix.platform}}-${{matrix.compiler}}-${{matrix.purpose}}"
