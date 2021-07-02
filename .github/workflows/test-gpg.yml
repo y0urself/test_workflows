@@ -28,5 +28,5 @@ jobs:
         #echo -e "allow-loopback-pinentry" >> ~/.gnupg/gpg-agent.conf
         #echo RELOADAGENT | gpg-connect-agent
         echo -e "${{ env.GPG_KEY }}" >> tmp.file
-        gpg --pinentry-mode loopback --import tmp.file && rm tmp.file
+        gpg --pinentry-mode loopback --passphrase ${{ env.GPG_PASSPHRASE }} --import tmp.file && rm tmp.file
         gpg --list-secret-keys
