@@ -1,0 +1,31 @@
+name: Release Python package with pontos
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  test-gpg-sign:
+    env:
+      GPG_KEY: ${{ secrets.GPG_KEY }}
+      GPG_FINGERPRINT: ${{ secrets.GPG_FINGERPRINT }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+    name: Test GPG
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install poetry and dependencies
+      uses: greenbone/actions/poetry@v1
+    - name: Sign assets with pontos
+      run: |
+        echo "Signing assets for ${{env.VERSION}}"
+        echo -e "${{ env.GPG_KEY }}" >> tmp.file
+        gpg --import tmp.file && rm tmp.file
+        gpg --list-secret-keys
