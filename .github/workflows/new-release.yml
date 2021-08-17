@@ -33,3 +33,5 @@ jobs:
         use-cross: true
         command: install
         args: git-cliff
+    - name: "Create CHANGELOG.md file"
+      run: git-cliff -v -u
