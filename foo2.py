@@ -1,2 +1,4 @@
-print("Hello Earth!", end="")
+print(
+        "Hello Earth!", end=""
+)
 
