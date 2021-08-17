@@ -1,0 +1,25 @@
+name: Test GPG
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  test-create-changelog:
+    env:
+      GPG_KEY: ${{ secrets.GPG_KEY }}
+      GPG_FINGERPRINT: ${{ secrets.GPG_FINGERPRINT }}
+      GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+    name: Test Create Changelog
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions-rs/toolchain@v1
+      with:
+        toolchain: stable
+        override: true
+    - uses: actions-rs/cargo@v1
+      with:
+        use-cross: true
+        command: install
+        args: git-cliff
