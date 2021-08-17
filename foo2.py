@@ -1,4 +1,4 @@
 print(
-        "Hello Earth!", end=""
+        "Hello World!", end=""
 )
 
