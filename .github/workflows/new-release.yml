@@ -30,7 +30,6 @@ jobs:
         profile: minimal
     - uses: actions-rs/cargo@v1
       with:
-        use-cross: true
         command: install
         args: git-cliff
     - name: "Create CHANGELOG.md file"
