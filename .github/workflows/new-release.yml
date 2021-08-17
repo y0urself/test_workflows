@@ -23,6 +23,7 @@ jobs:
           ~/.cargo/git/db/
           target/
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+    - run: cargo -V
     - uses: actions-rs/toolchain@v1
       with:
         toolchain: stable
