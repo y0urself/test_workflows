@@ -49,4 +49,4 @@ jobs:
     - name: get latest tag
       run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV;
     - name: increment tag (patch)
-      run: echo ${{env.TAG}} | awk -F. -v OFS=. '{++$NF; print;}'
+      run: echo ${{ env.GIT_TAG }} | awk -F. -v OFS=. '{++$NF; print;}'
