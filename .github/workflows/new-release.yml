@@ -65,3 +65,7 @@ jobs:
       run: |
         git commit -m "Add Changelog for Release ${{ env.NEW_TAG }}"
         git push
+    - name: create tag
+      run: |
+        git tag -a ${{ env.NEW_TAG }} -m "Create Tag for Release ${{ env.NEW_TAG }}"
+        git push --tags
