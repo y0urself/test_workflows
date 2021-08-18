@@ -40,6 +40,8 @@ jobs:
       run: cargo install git-cliff
     - name: "Create CHANGELOG.md file"
       run: git-cliff -v -u
+    - name: git fetch
+      run: git fetch
     - name: get latest tag
       run: echo "TAG=$(git describe $(git rev-list --tags --max-count=1))" >> $GITHUB_ENV;
     - name: increment tag (patch)
