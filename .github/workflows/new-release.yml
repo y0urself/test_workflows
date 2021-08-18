@@ -41,6 +41,6 @@ jobs:
     - name: "Create CHANGELOG.md file"
       run: git-cliff -v -u
     - name: get latest tag
-      run: echo "TAG=${git describe $(git rev-list --tags --max-count=1)}" >> $GITHUB_ENV;
+      run: echo "TAG=$(git describe $(git rev-list --tags --max-count=1))" >> $GITHUB_ENV;
     - name: increment tag (patch)
       run: echo ${{env.TAG}} | awk -F. -v OFS=. '{++$NF; print;}'
