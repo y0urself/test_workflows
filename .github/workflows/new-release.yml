@@ -10,6 +10,9 @@ jobs:
       GPG_KEY: ${{ secrets.GPG_KEY }}
       GPG_FINGERPRINT: ${{ secrets.GPG_FINGERPRINT }}
       GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      GITHUB_USER: ${{ secrets.GREENBONE_BOT }}
+      GITHUB_MAIL: ${{ secrets.GREENBONE_BOT_MAIL }}
+      GITHUB_TOKEN: ${{ secrets.GREENBONE_BOT_TOKEN }}
     name: Test Create Changelog
     runs-on: 'ubuntu-latest'
     steps:
@@ -40,7 +43,11 @@ jobs:
       #  git fetch --prune --unshallow --tags
       run: |
         git tag
-
+    - name: Tell git who I am
+      run: |
+        git config --global user.name "${{ env.GITHUB_USER }}"
+        git config --global user.email "${{ env.GITHUB_MAIL }}"
+        git remote set-url origin https://${{ env.GITHUB_TOKEN }}@github.com/${{ github.repository }}
     - name: install git-cliff
       run: cargo install git-cliff
     - name: get latest tag
@@ -52,3 +59,9 @@ jobs:
       run: git-cliff -v -u -o ${{ env.NEW_TAG }}.md
     - name: cat the mdfile
       run: cat ${{ env.NEW_TAG }}.md
+    - name: jo
+      run: git add ${{ env.NEW_TAG }}.md
+    - name: jolo
+      run: |
+        git commit -m "Add Changelog for Release ${{ env.NEW_TAG }}"
+        git push
