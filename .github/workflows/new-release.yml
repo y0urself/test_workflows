@@ -14,8 +14,8 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
     - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      # with:
+      #   fetch-depth: 0
     #this doesn't work ...
     # - uses: actions/cache@v2
     #   with:
@@ -36,14 +36,14 @@ jobs:
     # - run: cargo -V
     #- name: git log
     #  run: git log
-    - name: install git-cliff
-      run: cargo install git-cliff
-    - name: "Create CHANGELOG.md file"
-      run: git-cliff -v -u
     - name: git fetch
       run: |
         git fetch --prune --unshallow --tags
         git tag
+    - name: install git-cliff
+      run: cargo install git-cliff
+    - name: "Create CHANGELOG.md file"
+      run: git-cliff -v -u
     - name: get latest tag
       run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV;
     - name: increment tag (patch)
