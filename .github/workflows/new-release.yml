@@ -41,12 +41,12 @@ jobs:
       run: |
         git tag
 
-    #NOT USE
-    # - name: install git-cliff
-    #   run: cargo install git-cliff
-    # - name: "Create CHANGELOG.md file"
-    #   run: git-cliff -v -u
+    - name: install git-cliff
+      run: cargo install git-cliff
+    - name: "Create CHANGELOG.md file"
+      run: git-cliff -v -u
     - name: get latest tag
       run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV;
     - name: increment tag (patch)
-      run: echo ${{ env.GIT_TAG }} | awk -F. -v OFS=. '{++$NF; print;}'
+      run: echo "NEW_TAG=`echo ${{ env.GIT_TAG }} | awk -F. -v OFS=. '{++$NF; print;}'`" >> $GITHUB_ENV;
+    - run: echo ${{ env.NEW_TAG }}
