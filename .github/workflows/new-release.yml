@@ -42,7 +42,7 @@ jobs:
       run: git-cliff -v -u
     - name: git fetch
       run: |
-        git fetch --tags
+        git fetch --prune --tags
         git tag
     - name: get latest tag
       run: echo "GIT_TAG=`echo $(git describe --tags --abbrev=0)`" >> $GITHUB_ENV;
