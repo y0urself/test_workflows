@@ -34,9 +34,13 @@ jobs:
         override: true
         profile: minimal
     # - run: cargo -V
-    - name: git log
-      run: git log
+    #- name: git log
+    #  run: git log
     - name: install git-cliff
       run: cargo install git-cliff
     - name: "Create CHANGELOG.md file"
       run: git-cliff -v -u
+    - name: get latest tag
+      run: echo "TAG=${git describe $(git rev-list --tags --max-count=1)} >> $GITHUB_ENV;
+    - name: increment tag (patch)
+      run: echo ${{env.TAG}} | awk -F. -v OFS=. '{++$NF; print;}'
