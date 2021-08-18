@@ -14,8 +14,8 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
     - uses: actions/checkout@v2
-      # with:
-      #   fetch-depth: 0
+      with:
+        fetch-depth: 0
     #this doesn't work ...
     # - uses: actions/cache@v2
     #   with:
@@ -37,11 +37,11 @@ jobs:
     #- name: git log
     #  run: git log
     - name: git fetch
+      #  git fetch --prune --unshallow --tags
       run: |
-        git fetch --prune --unshallow --tags
         git tag
 
-    #NOT USE THIS FOR NOW.
+    #NOT USE
     # - name: install git-cliff
     #   run: cargo install git-cliff
     # - name: "Create CHANGELOG.md file"
