@@ -31,6 +31,8 @@ jobs:
         toolchain: stable
         override: true
         profile: minimal
+    - name: git log
+      run: git log
     - name: install git-cliff
       run: cargo install git-cliff
     - name: "Create CHANGELOG.md file"
