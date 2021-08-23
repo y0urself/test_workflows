@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bla"
-version = "21.8.1"
+version = "21.8.2"
 description = "Common utilities and tools maintained by Greenbone Networks"
 authors = ["Greenbone Networks GmbH <info@greenbone.net>"]
 license = "GPL-3.0-or-later"
@@ -24,9 +24,6 @@ packages = [
   { include = "test_workflow"},
   { include = "poetry.lock", format = "sdist" },
   { include = "poetry.toml", format = "sdist" },
-]
-include = [
-  "pontos/updateheader/templates/"
 ]
 
 [tool.poetry.dependencies]
