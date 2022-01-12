@@ -1,0 +1,17 @@
+name: Backport
+
+on:
+  pull_request:
+    types:
+      - closed
+      - labeled
+
+jobs:
+  backport:
+    name: Backport Pull Requests
+    runs-on: ubuntu-latest
+    steps:
+        - name: Backport Pull Request
+          uses: greenbone/actions/backport-pull-request@v1
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
