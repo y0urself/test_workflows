@@ -1,0 +1,16 @@
+name: CI notify
+on:
+  workflow_run:
+    # Workflows need to be added here!
+    workflows:
+      - "Test debug"
+    types:
+      - completed
+
+jobs:
+  notify:
+    name: Test Github Env
+    runs-on: ubuntu-latest
+    steps:
+      - name: print env
+        run: echo $GITHUB_EVENT_PATH
